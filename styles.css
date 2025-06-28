@@ -410,6 +410,136 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* Christian Radio Section */
+.radio-section {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    padding: 3rem 0;
+    margin: 2rem 0;
+    border-radius: 16px;
+}
+
+.radio-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.radio-container h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.radio-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.radio-player {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.radio-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.radio-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.radio-details h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.radio-details p {
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.radio-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-indicator i {
+    color: #2ecc71;
+    animation: pulse 2s infinite;
+}
+
+.radio-controls {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.radio-play-btn {
+    min-width: 140px;
+}
+
+.radio-play-btn.playing {
+    background: #2ecc71;
+}
+
+.radio-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.feature i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #f39c12;
+}
+
+.feature h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
 /* About Section */
 .about-section {
     padding: 3rem 0;
@@ -550,6 +680,19 @@ body {
         flex-direction: column;
     }
 
+    .radio-player {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .radio-info {
+        flex-direction: column;
+    }
+
+    .radio-controls {
+        justify-content: center;
+    }
+
     .about-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -583,6 +726,10 @@ body {
         min-width: auto;
         width: 100%;
     }
+
+    .radio-features {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Animation Classes */
@@ -614,6 +761,12 @@ body {
     }
 }
 
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
 /* API Status Indicator */
 .api-status {
     position: fixed;
@@ -637,10 +790,4 @@ body {
 .api-status i {
     font-size: 0.7rem;
     animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
 } 

@@ -2,6 +2,11 @@
 const BIBLE_API_BASE_URL = 'https://bible-api.com';
 const ALTERNATIVE_API_URL = 'https://api.scripture.api.bible/v1';
 
+// Christian Radio Configuration
+const RADIO_STREAM_URL = 'https://s3.radio.co/s97f38db97/listen';
+let radioAudio = null;
+let isRadioPlaying = false;
+
 // Complete Bible data structure with ALL books and chapters
 const completeBibleData = {
     books: [
@@ -123,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
     getDailyVerse();
     setupNavigation();
     setupTranslationSelector();
+    setupRadioPlayer();
     updateStatistics();
     showAPIStatus();
 });
@@ -169,6 +175,95 @@ function setupTranslationSelector() {
             <option value="cev">Contemporary English Version</option>
             <option value="msg">The Message</option>
         `;
+    }
+}
+
+// Setup Christian Radio Player
+function setupRadioPlayer() {
+    // Create audio element for radio
+    radioAudio = new Audio();
+    radioAudio.crossOrigin = "anonymous";
+    
+    // Add event listeners for radio controls
+    radioAudio.addEventListener('play', () => {
+        isRadioPlaying = true;
+        updateRadioUI();
+    });
+    
+    radioAudio.addEventListener('pause', () => {
+        isRadioPlaying = false;
+        updateRadioUI();
+    });
+    
+    radioAudio.addEventListener('ended', () => {
+        isRadioPlaying = false;
+        updateRadioUI();
+    });
+    
+    radioAudio.addEventListener('error', (e) => {
+        console.error('Radio error:', e);
+        showNotification('Radio stream error. Please try again.', 'error');
+        isRadioPlaying = false;
+        updateRadioUI();
+    });
+}
+
+// Toggle Christian Radio
+function toggleRadio() {
+    if (!radioAudio) {
+        setupRadioPlayer();
+    }
+    
+    if (isRadioPlaying) {
+        stopRadio();
+    } else {
+        playRadio();
+    }
+}
+
+// Play Christian Radio
+function playRadio() {
+    try {
+        radioAudio.src = RADIO_STREAM_URL;
+        radioAudio.play().then(() => {
+            showNotification('Christian radio started!', 'success');
+        }).catch(error => {
+            console.error('Radio play error:', error);
+            showNotification('Unable to play radio. Opening in new tab...', 'info');
+            window.open(RADIO_STREAM_URL, '_blank');
+        });
+    } catch (error) {
+        console.error('Radio setup error:', error);
+        showNotification('Radio not available. Opening in new tab...', 'info');
+        window.open(RADIO_STREAM_URL, '_blank');
+    }
+}
+
+// Stop Christian Radio
+function stopRadio() {
+    if (radioAudio) {
+        radioAudio.pause();
+        radioAudio.currentTime = 0;
+        showNotification('Radio stopped.', 'info');
+    }
+}
+
+// Update Radio UI
+function updateRadioUI() {
+    const playBtn = document.querySelector('.radio-play-btn');
+    const playIcon = document.getElementById('radioPlayIcon');
+    const playText = document.getElementById('radioPlayText');
+    
+    if (playBtn && playIcon && playText) {
+        if (isRadioPlaying) {
+            playBtn.classList.add('playing');
+            playIcon.className = 'fas fa-pause';
+            playText.textContent = 'Pause Radio';
+        } else {
+            playBtn.classList.remove('playing');
+            playIcon.className = 'fas fa-play';
+            playText.textContent = 'Play Radio';
+        }
     }
 }
 
@@ -602,12 +697,6 @@ style.textContent = `
     .api-status i {
         font-size: 0.7rem;
         animation: pulse 2s infinite;
-    }
-    
-    @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: 0.5; }
-        100% { opacity: 1; }
     }
 `;
 document.head.appendChild(style);

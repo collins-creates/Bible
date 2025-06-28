@@ -21,6 +21,7 @@
                     <a href="#home" class="nav-link active">Home</a>
                     <a href="#search" class="nav-link">Search</a>
                     <a href="#daily" class="nav-link">Daily Verse</a>
+                    <a href="#radio" class="nav-link">Radio</a>
                     <a href="#about" class="nav-link">About</a>
                 </nav>
             </div>
@@ -147,6 +148,58 @@
                 </div>
             </section>
 
+            <!-- Christian Radio Section -->
+            <section id="radio" class="radio-section">
+                <div class="radio-container">
+                    <h3>Christian Radio</h3>
+                    <p class="radio-subtitle">Listen to uplifting Christian music and messages</p>
+                    <div class="radio-player">
+                        <div class="radio-info">
+                            <div class="radio-icon">
+                                <i class="fas fa-broadcast-tower"></i>
+                            </div>
+                            <div class="radio-details">
+                                <h4>Live Christian Radio</h4>
+                                <p>Uplifting music, sermons, and spiritual content 24/7</p>
+                                <div class="radio-status">
+                                    <span class="status-indicator">
+                                        <i class="fas fa-circle"></i>
+                                        Live
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="radio-controls">
+                            <button class="btn btn-primary radio-play-btn" onclick="toggleRadio()">
+                                <i class="fas fa-play" id="radioPlayIcon"></i>
+                                <span id="radioPlayText">Play Radio</span>
+                            </button>
+                            <a href="https://s3.radio.co/s97f38db97/listen" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Open in New Tab
+                            </a>
+                        </div>
+                    </div>
+                    <div class="radio-features">
+                        <div class="feature">
+                            <i class="fas fa-music"></i>
+                            <h5>Christian Music</h5>
+                            <p>Uplifting worship songs and contemporary Christian music</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-church"></i>
+                            <h5>Sermons & Messages</h5>
+                            <p>Inspiring sermons and spiritual teachings</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <h5>24/7 Streaming</h5>
+                            <p>Continuous Christian content around the clock</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- About Section -->
             <section id="about" class="about-section">
                 <div class="about-container">
@@ -163,6 +216,7 @@
                                 <li><strong>Old & New Testament</strong>: Complete coverage of both testaments</li>
                                 <li><strong>Advanced Search</strong>: Find specific verses or search by keywords</li>
                                 <li><strong>Daily Inspiration</strong>: New verse each day from all scripture</li>
+                                <li><strong>Christian Radio</strong>: Live streaming Christian music and messages</li>
                                 <li><strong>Mobile Responsive</strong>: Works perfectly on all devices</li>
                             </ul>
                             <p><strong>Bible Statistics:</strong></p>
@@ -205,7 +259,7 @@
             <div class="footer-content">
                 <p>&copy; 2024 Complete Bible Study Platform. All rights reserved.</p>
                 <p>Complete Bible content: 66 books, 1,189 chapters, 31,102 verses provided by Bible API (bible-api.com).</p>
-                <p>Used for educational and spiritual purposes.</p>
+                <p>Christian radio streaming provided by Radio.co. Used for educational and spiritual purposes.</p>
             </div>
         </footer>
     </div>
