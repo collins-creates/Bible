@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Bible Study - All 66 Books & 31,102 Verses</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-cross"></i>
+                    <h1>Complete Bible Study</h1>
+                </div>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#search" class="nav-link">Search</a>
+                    <a href="#daily" class="nav-link">Daily Verse</a>
+                    <a href="#about" class="nav-link">About</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section id="home" class="hero">
+                <div class="hero-content">
+                    <h2>Complete Bible Scriptures</h2>
+                    <p>Access ALL 66 books of the Bible with 31,102 verses from both Old and New Testaments. Explore scripture, find verses, and deepen your spiritual journey with our comprehensive Bible study platform powered by real Bible APIs.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">66</span>
+                            <span class="stat-label">Books</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1,189</span>
+                            <span class="stat-label">Chapters</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">31,102</span>
+                            <span class="stat-label">Verses</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('search')">
+                            <i class="fas fa-search"></i>
+                            Search All Scripture
+                        </button>
+                        <button class="btn btn-secondary" onclick="getDailyVerse()">
+                            <i class="fas fa-calendar-day"></i>
+                            Daily Verse
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="bible-illustration">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Section -->
+            <section id="search" class="search-section">
+                <div class="search-container">
+                    <h3>Search the Complete Bible</h3>
+                    <p class="search-subtitle">Access all 66 books from Genesis to Revelation</p>
+                    <div class="search-box">
+                        <div class="search-inputs">
+                            <select id="translationSelect" class="search-select">
+                                <option value="web">World English Bible</option>
+                                <option value="kjv">King James Version</option>
+                                <option value="niv">New International Version</option>
+                                <option value="esv">English Standard Version</option>
+                                <option value="nasb">New American Standard Bible</option>
+                                <option value="nlt">New Living Translation</option>
+                                <option value="cev">Contemporary English Version</option>
+                                <option value="msg">The Message</option>
+                            </select>
+                            <select id="bookSelect" class="search-select">
+                                <option value="">Select Book</option>
+                            </select>
+                            <input type="number" id="chapterInput" class="search-input" placeholder="Chapter" min="1">
+                            <input type="number" id="verseInput" class="search-input" placeholder="Verse" min="1">
+                            <button class="btn btn-primary" onclick="searchVerse()">
+                                <i class="fas fa-search"></i>
+                                Find Verse
+                            </button>
+                        </div>
+                        <div class="search-alternative">
+                            <input type="text" id="keywordSearch" class="search-input full-width" placeholder="Search by keyword across all scripture...">
+                            <button class="btn btn-secondary" onclick="searchByKeyword()">
+                                <i class="fas fa-search"></i>
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results" class="results-section" style="display: none;">
+                <div class="results-container">
+                    <div class="verse-header">
+                        <h3 id="verseReference"></h3>
+                        <div class="verse-actions">
+                            <button class="btn btn-icon" onclick="copyVerse()" title="Copy verse">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button class="btn btn-icon" onclick="shareVerse()" title="Share verse">
+                                <i class="fas fa-share"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="verse-content">
+                        <p id="verseText"></p>
+                    </div>
+                    <div class="verse-navigation">
+                        <button class="btn btn-secondary" onclick="previousVerse()">
+                            <i class="fas fa-chevron-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-secondary" onclick="nextVerse()">
+                            Next
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daily Verse Section -->
+            <section id="daily" class="daily-section">
+                <div class="daily-container">
+                    <h3>Verse of the Day</h3>
+                    <p class="daily-subtitle">Daily inspiration from the complete Bible</p>
+                    <div class="daily-verse" id="dailyVerseContent">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading daily verse from all scripture...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="about-section">
+                <div class="about-container">
+                    <h3>Complete Bible Study Platform</h3>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>This comprehensive Bible study platform provides access to ALL 66 books of the Bible with 31,102 verses from both Old and New Testaments. Powered by real Bible APIs, you can explore authentic scripture from multiple translations.</p>
+                            <p>Our platform features:</p>
+                            <ul>
+                                <li><strong>Complete Bible Coverage</strong>: All 66 books from Genesis to Revelation</li>
+                                <li><strong>31,102 Verses</strong>: Every verse in the Bible accessible</li>
+                                <li><strong>Multiple Translations</strong>: 8+ Bible translations available</li>
+                                <li><strong>Real Bible API Integration</strong>: Authentic scripture from bible-api.com</li>
+                                <li><strong>Old & New Testament</strong>: Complete coverage of both testaments</li>
+                                <li><strong>Advanced Search</strong>: Find specific verses or search by keywords</li>
+                                <li><strong>Daily Inspiration</strong>: New verse each day from all scripture</li>
+                                <li><strong>Mobile Responsive</strong>: Works perfectly on all devices</li>
+                            </ul>
+                            <p><strong>Bible Statistics:</strong></p>
+                            <ul>
+                                <li><strong>Old Testament:</strong> 39 books, 929 chapters</li>
+                                <li><strong>New Testament:</strong> 27 books, 260 chapters</li>
+                                <li><strong>Total:</strong> 66 books, 1,189 chapters, 31,102 verses</li>
+                            </ul>
+                            <p><strong>API Source:</strong> This website uses the Bible API (bible-api.com) to provide real scripture content. All verses are fetched in real-time from the API.</p>
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <h4>66</h4>
+                                <p>Books</p>
+                                <small>39 Old + 27 New</small>
+                            </div>
+                            <div class="stat">
+                                <h4>1,189</h4>
+                                <p>Chapters</p>
+                                <small>929 Old + 260 New</small>
+                            </div>
+                            <div class="stat">
+                                <h4>31,102</h4>
+                                <p>Verses</p>
+                                <small>Complete Bible</small>
+                            </div>
+                            <div class="stat">
+                                <h4>8+</h4>
+                                <p>Translations</p>
+                                <small>Multiple versions</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2024 Complete Bible Study Platform. All rights reserved.</p>
+                <p>Complete Bible content: 66 books, 1,189 chapters, 31,102 verses provided by Bible API (bible-api.com).</p>
+                <p>Used for educational and spiritual purposes.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

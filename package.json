@@ -1,0 +1,47 @@
+{
+  "name": "complete-bible-website",
+  "version": "1.0.0",
+  "description": "Complete Bible Study Platform with all 66 books and 31,102 verses",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx http-server -p 8000",
+    "dev": "npx live-server --port=8000",
+    "build": "echo 'No build process needed - static HTML/CSS/JS'",
+    "deploy": "echo 'Deploy to GitHub Pages: git push origin main'"
+  },
+  "keywords": [
+    "bible",
+    "scripture",
+    "study",
+    "christian",
+    "religion",
+    "api",
+    "web",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Collins Creates",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/collins-creates/Bible.git"
+  },
+  "homepage": "https://collins-creates.github.io/Bible/",
+  "bugs": {
+    "url": "https://github.com/collins-creates/Bible/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+} 
